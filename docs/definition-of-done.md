@@ -67,7 +67,7 @@ Commands come from `config/ci.rb`. `bin/ci` runs all of them in order.
 
 ## Documentation
 
-- [ ] New domain terms are added to `GLOSSARY.md` via the `domain-modeling` skill.
+- [ ] New domain terms are added to `GLOSSARY.md`.
 - [ ] A decision that is hard to reverse gets an ADR in `docs/adr/`.
 - [ ] Changed screens match their mockup in [design/](design/), or the PR description lists each difference.
 - [ ] [README.md](README.md) is updated when a doc, mockup or skill is added, renamed or removed.
@@ -78,6 +78,6 @@ Commands come from `config/ci.rb`. `bin/ci` runs all of them in order.
 - [ ] `bin/ci` exits 0. There is no hosted CI workflow, so this local run is the gate.
 - [ ] The work is on a branch, not `main`, and the PR body contains `Closes #<issue>`.
 - [ ] The PR description lists which acceptance criteria it covers.
-- [ ] The `code-review` skill has been run against `main`, and each finding is fixed or answered in the PR. _(optional)_
+- [ ] Changes have been reviewed against `main`, and each finding is fixed or answered in the PR. _(optional)_
 - [ ] `gh signoff` sets a green commit status. _(optional: commented out in `config/ci.rb`)_
-- [ ] The PR is open against `main`, and its body follows [`.github/pull_request_template.md`](../.github/pull_request_template.md) as [pull-requests.md](pull-requests.md) describes: Summary, What Changed, Why, Test Plan and Risks / Notes are all filled in, and Risks / Notes says `None.` when there are none. The `pr` skill does this step.
+- [ ] The PR is open against `main`, and its body follows [`.github/pull_request_template.md`](../.github/pull_request_template.md) as [pull-requests.md](pull-requests.md) describes: Summary, What Changed, Why, Test Plan and Risks / Notes are all filled in, and Risks / Notes says `None.` when there are none.

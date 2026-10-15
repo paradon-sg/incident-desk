@@ -1,4 +1,5 @@
 class RolifyCreateRoles < ActiveRecord::Migration[8.1]
+  # Create roles and a join table that permits at most one role per user.
   def change
     create_table :roles do |t|
       t.string :name, null: false

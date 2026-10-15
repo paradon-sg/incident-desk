@@ -1,4 +1,5 @@
 class CreateUsers < ActiveRecord::Migration[8.1]
+  # Create users with password digests and unique email addresses.
   def change
     create_table :users do |t|
       t.string :email_address, null: false

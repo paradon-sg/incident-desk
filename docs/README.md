@@ -1,6 +1,6 @@
 # Docs index
 
-Start here. Find your task, read the files in its row, then work. Linked paths are relative to this folder; backticked paths are relative to the repo root; skills are invoked by name. Files marked _(created later)_ do not exist yet: skip them silently until they do.
+Start here. Find your task, read the files in its row, then work. Linked paths are relative to this folder; backticked paths are relative to the repo root. Files marked _(created later)_ do not exist yet: skip them silently until they do.
 
 ## Task → files to read
 
@@ -9,13 +9,13 @@ Start here. Find your task, read the files in its row, then work. Linked paths a
 | Understand the product and its scope | [requirements.md](requirements.md), [user-stories.md](user-stories.md) |
 | Build or change a screen | The matching mockup in [design/](#ui-mockups), [design/styles.css](design/styles.css), its story in [user-stories.md](user-stories.md) |
 | Write or change any code | The matching files in `.claude/rules/` _(created later)_; see [Reading the rules](#reading-the-rules) |
-| Implement a ticket or feature | [definition-of-done.md](definition-of-done.md) (see [Reading the definition of done](#reading-the-definition-of-done)), the GitHub issue (see [agents/issue-tracker.md](agents/issue-tracker.md)), [user-stories.md](user-stories.md), [requirements.md](requirements.md), `GLOSSARY.md` _(created later)_, `docs/adr/` _(created later)_; skills `implement`, `tdd` |
+| Implement a ticket or feature | [definition-of-done.md](definition-of-done.md) (see [Reading the definition of done](#reading-the-definition-of-done)), the GitHub issue (see [agents/issue-tracker.md](agents/issue-tracker.md)), [user-stories.md](user-stories.md), [requirements.md](requirements.md), `GLOSSARY.md` _(created later)_, `docs/adr/` _(created later)_ |
 | Break a plan or spec into tickets | [agents/issue-tracker.md](agents/issue-tracker.md), [agents/triage-labels.md](agents/triage-labels.md); skill `to-tickets` |
 | Triage or label issues | [agents/triage-labels.md](agents/triage-labels.md), [agents/issue-tracker.md](agents/issue-tracker.md) |
-| Write, open or update a PR | [pull-requests.md](pull-requests.md), `.github/pull_request_template.md`, [definition-of-done.md](definition-of-done.md); skill `pr` |
-| Review a branch or PR | [definition-of-done.md](definition-of-done.md), the originating issue, [requirements.md](requirements.md), [user-stories.md](user-stories.md); skill `code-review` |
-| Name a domain concept or record a decision | [agents/domain.md](agents/domain.md), `GLOSSARY.md` _(created later)_, `docs/adr/` _(created later)_; skill `domain-modeling` |
-| Design a module's interface | `GLOSSARY.md` _(created later)_; skill `codebase-design` |
+| Write, open or update a PR | [pull-requests.md](pull-requests.md), `.github/pull_request_template.md`, [definition-of-done.md](definition-of-done.md) |
+| Review a branch or PR | [definition-of-done.md](definition-of-done.md), the originating issue, [requirements.md](requirements.md), [user-stories.md](user-stories.md) |
+| Name a domain concept or record a decision | [agents/domain.md](agents/domain.md), `GLOSSARY.md` _(created later)_, `docs/adr/` _(created later)_ |
+| Design a module's interface | `GLOSSARY.md` _(created later)_ |
 
 ## Reading the rules
 
@@ -69,10 +69,4 @@ Defined in `.agents/skills/<name>/SKILL.md` (symlinked into `.claude/skills/`).
 
 | Skill | Use for |
 | --- | --- |
-| `implement` | Implementing work from a spec or tickets |
-| `tdd` | Building features or fixing bugs test-first |
 | `to-tickets` | Splitting a plan or spec into tracker tickets with blocking edges |
-| `code-review` | Reviewing changes against repo standards and the originating spec |
-| `pr` | Writing a PR title and body and opening the PR |
-| `domain-modeling` | Resolving terminology; writing `GLOSSARY.md` and ADRs |
-| `codebase-design` | Designing deep modules and seams |

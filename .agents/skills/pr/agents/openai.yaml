@@ -1,3 +1,0 @@
-interface:
-  display_name: "PR"
-  short_description: "Write and open a PR that follows docs/pull-requests.md"

@@ -1,4 +1,5 @@
 module SessionTestHelper
+  # Create a session and set the signed cookie used by integration requests.
   def sign_in_as(user)
     Current.session = user.sessions.create!
 
@@ -8,6 +9,7 @@ module SessionTestHelper
     end
   end
 
+  # Destroy the test session and remove its browser cookie.
   def sign_out
     Current.session&.destroy!
     cookies.delete("session_id")
