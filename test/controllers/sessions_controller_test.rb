@@ -1,6 +1,32 @@
 require "test_helper"
 
 class SessionsControllerTest < ActionDispatch::IntegrationTest
+  test "the sign-in page shows the email and password form without a top bar" do
+    get new_session_path
+
+    assert_response :success
+    assert_select "form[action=?]", session_path do
+      assert_select "input[name=email_address]"
+      assert_select "input[name=password][type=password]"
+    end
+    assert_select "[role=alert]", count: 0
+    assert_select "header.topbar", count: 0
+  end
+
+  test "signed-in users visiting the sign-in page are sent to the ticket dashboard" do
+    sign_in_as users(:customer)
+
+    get new_session_path
+
+    assert_redirected_to root_path
+  end
+
+  test "logging out while signed out redirects to sign in" do
+    delete session_path
+
+    assert_redirected_to new_session_path
+  end
+
   test "signing in with valid credentials redirects to the ticket dashboard" do
     post session_path, params: { email_address: "customer@example.com", password: "password" }
 

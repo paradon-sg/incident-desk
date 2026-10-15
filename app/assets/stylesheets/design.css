@@ -1,5 +1,5 @@
 /* Incident Desk design system, ported from docs/design/styles.css.
-   Pagination styles are omitted: the app takes them from Bulma's CSS and pagy. */
+   Pagination styles are left out: the mockup marks them reference-only (no pagination yet). */
 
 @layer base {
   :root {

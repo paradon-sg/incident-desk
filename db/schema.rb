@@ -43,8 +43,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_15_081953) do
     t.integer "user_id", null: false
     t.integer "role_id", null: false
     t.index ["role_id"], name: "index_users_roles_on_role_id"
-    t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", unique: true
-    t.index ["user_id"], name: "index_users_roles_on_user_id"
+    t.index ["user_id"], name: "index_users_roles_on_user_id", unique: true
   end
 
   add_foreign_key "sessions", "users"
