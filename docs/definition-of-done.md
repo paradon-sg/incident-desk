@@ -80,3 +80,4 @@ Commands come from `config/ci.rb`. `bin/ci` runs all of them in order.
 - [ ] The PR description lists which acceptance criteria it covers.
 - [ ] The `code-review` skill has been run against `main`, and each finding is fixed or answered in the PR. _(optional)_
 - [ ] `gh signoff` sets a green commit status. _(optional: commented out in `config/ci.rb`)_
+- [ ] The PR is open against `main`, and its body follows [`.github/pull_request_template.md`](../.github/pull_request_template.md) as [pull-requests.md](pull-requests.md) describes: Summary, What Changed, Why, Test Plan and Risks / Notes are all filled in, and Risks / Notes says `None.` when there are none. The `pr` skill does this step.
