@@ -1,5 +1,9 @@
 # AGENTS.md
 
+## Docs index
+
+Before starting a task, read `docs/README.md`: it maps each task to the requirements, stories, mockups, and skills to read.
+
 ## Agent skills
 
 ### Issue tracker
