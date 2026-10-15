@@ -41,23 +41,28 @@ ActionCable reconnects automatically after a WebSocket disconnection, but any br
 ```js
 // app/javascript/controllers/cable_monitor_controller.js
 import { Controller } from "@hotwired/stimulus"
-import { getConsumer } from "@hotwired/turbo-rails"
+import { cable } from "@hotwired/turbo-rails"
 
 export default class extends Controller {
   static classes = ["stale"]
 
-  connect() {
-    this.monitor = getConsumer().connection.monitor
+  async connect() {
+    const lifecycle = this.lifecycle = {}
+    const consumer = await cable.getConsumer()
+    if (this.lifecycle !== lifecycle) return
+
+    this.monitor = consumer.connection.monitor
     this.checkInterval = setInterval(() => this.checkConnection(), 2000)
     this.wasDisconnected = false
   }
 
   disconnect() {
+    this.lifecycle = null
     clearInterval(this.checkInterval)
   }
 
   checkConnection() {
-    const connected = this.monitor.isRunning()
+    const connected = this.monitor.connection.isOpen()
 
     if (!connected && !this.wasDisconnected) {
       this.wasDisconnected = true

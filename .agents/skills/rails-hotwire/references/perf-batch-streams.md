@@ -36,6 +36,7 @@ end
 # app/controllers/comments_controller.rb
 class CommentsController < ApplicationController
   def create
+    @project = Project.find(params[:project_id])
     @comment = @project.comments.build(comment_params)
     @comment.user = current_user
 
@@ -44,10 +45,23 @@ class CommentsController < ApplicationController
         format.turbo_stream
         format.html { redirect_to @project }
       end
+    else
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.replace(
+            "new_comment",
+            partial: "comments/form",
+            locals: { project: @project, comment: @comment }
+          ), status: :unprocessable_entity
+        end
+        format.html { render "projects/show", status: :unprocessable_entity }
+      end
     end
   end
 end
 ```
+
+The `comments/form` partial must include the `new_comment` wrapper and display `comment.errors.full_messages`. The HTML page's form must use `@comment` to preserve the submitted values and validation messages.
 
 ```erb
 <%# app/views/comments/create.turbo_stream.erb %>

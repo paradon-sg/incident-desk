@@ -45,14 +45,16 @@ export default class extends Controller {
 
 ```erb
 <%= form_with model: [@project, Comment.new],
-    data: { controller: "auto-submit", action: "turbo:submit-start->auto-submit#disable" } do |f| %>
-  <%= f.text_area :body,
-      data: {
-        controller: "character-count",
-        character_count_max_value: 500,
-        action: "input->character-count#update"
-      } %>
-  <span data-character-count-target="counter">500 remaining</span>
+    data: { controller: "auto-submit",
+            action: "turbo:submit-start->auto-submit#disable turbo:submit-end->auto-submit#enable" } do |f| %>
+  <div data-controller="character-count" data-character-count-max-value="500">
+    <%= f.text_area :body,
+        data: {
+          character_count_target: "input",
+          action: "input->character-count#update"
+        } %>
+    <span data-character-count-target="counter">500 remaining</span>
+  </div>
   <%= f.submit "Post Comment" %>
 <% end %>
 ```
@@ -63,11 +65,11 @@ export default class extends Controller {
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["counter"]
+  static targets = ["input", "counter"]
   static values = { max: { type: Number, default: 280 } }
 
   update() {
-    const remaining = this.maxValue - this.element.value.length
+    const remaining = this.maxValue - this.inputTarget.value.length
     this.counterTarget.textContent = `${remaining} remaining`
     this.counterTarget.classList.toggle("text-red-600", remaining < 0)
   }
@@ -81,10 +83,16 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   disable() {
-    const button = this.element.querySelector("[type='submit']")
-    button.disabled = true
-    button.dataset.originalText = button.textContent
-    button.textContent = "Sending..."
+    this.button = this.element.querySelector("[type='submit']")
+    this.textProperty = this.button.tagName === "INPUT" ? "value" : "textContent"
+    this.originalText = this.button[this.textProperty]
+    this.button.disabled = true
+    this.button[this.textProperty] = "Sending..."
+  }
+
+  enable() {
+    this.button[this.textProperty] = this.originalText
+    this.button.disabled = false
   }
 }
 ```

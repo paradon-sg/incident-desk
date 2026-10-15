@@ -39,23 +39,18 @@ end
 class Message < ApplicationRecord
   belongs_to :conversation
 
-  # Stream is scoped to the specific conversation
-  broadcasts_refreshes_to :conversation
+  # Stream is scoped to the account and conversation
+  broadcasts_refreshes_to ->(message) { [message.conversation.account, message.conversation] }
 end
 ```
 
 ```erb
 <%# app/views/conversations/show.html.erb %>
 
-<%# Subscribes to this conversation's signed stream only %>
-<%= turbo_stream_from @conversation %>
+<%# Use the same account and conversation streamables as the model %>
+<%= turbo_stream_from current_user.account, @conversation %>
 
 <div id="messages">
   <%= render @conversation.messages %>
 </div>
-
-<%# For deeper scoping (e.g., account + resource), use an array: %>
-<%# turbo_stream_from generates a signed name from all components,
-    preventing cross-tenant subscription even if IDs collide %>
-<%= turbo_stream_from current_user.account, @conversation %>
 ```

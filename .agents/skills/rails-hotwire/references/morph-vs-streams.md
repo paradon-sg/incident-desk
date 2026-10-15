@@ -57,6 +57,7 @@ end
 # app/controllers/tasks_controller.rb
 class TasksController < ApplicationController
   def update
+    @project = Project.find(params[:project_id])
     @task = @project.tasks.find(params[:id])
 
     if @task.update(task_params)
